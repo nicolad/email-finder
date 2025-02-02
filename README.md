@@ -39,3 +39,4 @@ To learn more about the AI SDK, Next.js, and FastAPI take a look at the followin
 - [Vercel AI Playground](https://play.vercel.ai) - try different models and choose the best one for your use case.
 - [Next.js Docs](https://nextjs.org/docs) - learn about Next.js features and API.
 - [FastAPI Docs](https://fastapi.tiangolo.com) - learn about FastAPI features and API.
+# email-finder
