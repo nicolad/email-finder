@@ -14,18 +14,10 @@ load_dotenv(".env.local")
 
 app = FastAPI()
 
-client = OpenAI(
-    api_key=os.environ.get("OPENAI_API_KEY"),
-)
-
+client = OpenAI(api_key="ollama", base_url="http://localhost:11434/v1/")
 
 class Request(BaseModel):
     messages: List[ClientMessage]
-
-
-available_tools = {
-    "get_current_weather": get_current_weather,
-}
 
 
 def stream_text(messages: List[ClientMessage], protocol: str = 'data'):
@@ -33,26 +25,6 @@ def stream_text(messages: List[ClientMessage], protocol: str = 'data'):
         messages=messages,
         model="gpt-4o",
         stream=True,
-        tools=[{
-            "type": "function",
-            "function": {
-                "name": "get_current_weather",
-                "description": "Get the current weather in a given location",
-                "parameters": {
-                    "type": "object",
-                    "properties": {
-                        "location": {
-                            "type": "string",
-                            "description": "The city and state, e.g. San Francisco, CA",
-                        },
-                        "unit": {
-                            "type": "string",
-                            "enum": ["celsius", "fahrenheit"]},
-                    },
-                    "required": ["location", "unit"],
-                },
-            },
-        }]
     )
 
     # When protocol is set to "text", you will send a stream of plain text chunks
