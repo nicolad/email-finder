@@ -23,7 +23,7 @@ class Request(BaseModel):
 def stream_text(messages: List[ClientMessage], protocol: str = 'data'):
     stream = client.chat.completions.create(
         messages=messages,
-        model="gpt-4o",
+        model="deepseek-r1",
         stream=True,
     )
 
